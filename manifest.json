@@ -1,0 +1,21 @@
+{
+  "name": "Marble Hop Pro",
+  "description": "Marble Hop is a solo marble game. This Pro vesion can be played offline and has number of challenging puzzles.",
+  "version": "1.2",
+  "app": {
+    "launch": {
+      "local_path": "index.html",
+      "container": "panel",
+        "height":717,
+        "width":537 
+    }
+  },
+  "icons": {
+    "16": "icon-16.png",
+    "128": "icon-128.png"
+  },
+  "permissions": [
+    "unlimitedStorage",
+    "notifications"
+  ]
+}

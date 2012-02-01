@@ -1,0 +1,733 @@
+#boardTableWrapper
+{
+width: 100%; height: 100%; display:block; position: relative; margin-top:auto; margin-left:auto; margin-bottom:auto; margin-right:auto;
+}
+
+.boardTableTD
+{
+    height: 100px;
+    width: 100px;
+}
+
+.blankTD {
+    border-color: transparent;
+}
+
+.topPeg {
+    position: relative;
+    border-width: 0px;
+    border-style: none;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: auto;
+    margin-bottom: auto;
+    background-image: url(../../Images/topPegBG.png);
+    background-position: 50% 50%;
+    background-repeat: no-repeat;
+}
+
+.leftPeg {
+    position: relative;
+    border-width: 0px;
+    border-style: none;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: auto;
+    margin-bottom: auto;
+    background-image: url(../../Images/topPegBG.png);
+    background-position: 50% 50%;
+    background-repeat: no-repeat;
+}
+
+.rightPeg {
+    position: relative;
+    border-width: 0px;
+    border-style: none;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: auto;
+    margin-bottom: auto;
+    background-image: url(../../Images/topPegBG.png);
+    background-position: 50% 50%;
+    background-repeat: no-repeat;
+}
+
+
+.ACTopPeg {
+    position: relative;
+    border-width: 0px;
+    border-style: none;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: auto;
+    margin-bottom: auto;
+    background-image: url(../../Images/topPegBG.png);
+    background-position: 50% 50%;
+    background-repeat: no-repeat;
+}
+
+.ACLeftTopPeg {
+    position: relative;
+    border-width: 0px;
+    border-style: none;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: auto;
+    margin-bottom: auto;
+    background-image: url(../../Images/topPegBG.png);
+    background-position: 50% 50%;
+    background-repeat: no-repeat;
+}
+
+.ACRightTopPeg {
+    position: relative;
+    border-width: 0px;
+    border-style: none;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: auto;
+    margin-bottom: auto;
+    background-image: url(../../Images/topPegBG.png);
+    background-position: 50% 50%;
+    background-repeat: no-repeat;
+}
+
+.CenterPeg {
+    position: relative;
+    border-width: 0px;
+    border-style: none;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: auto;
+    margin-bottom: auto;
+    background-image: url(../../Images/topPegBG.png);
+    background-position: 50% 50%;
+    background-repeat: no-repeat;
+}
+
+
+.ACLeftPeg {
+    position: relative;
+    border-width: 0px;
+    border-style: none;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: auto;
+    margin-bottom: auto;
+    background-image: url(../../Images/topPegBG.png);
+    background-position: 50% 50%;
+    background-repeat: no-repeat;
+}
+
+
+.ACRightPeg {
+    position: relative;
+    border-width: 0px;
+    border-style: none;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: auto;
+    margin-bottom: auto;
+    background-image: url(../../Images/topPegBG.png);
+    background-position: 50% 50%;
+    background-repeat: no-repeat;
+}
+
+.ACBottomLeftPeg {
+    position: relative;
+    border-width: 0px;
+    border-style: none;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: auto;
+    margin-bottom: auto;
+    background-image: url(../../Images/topPegBG.png);
+    background-position: 50% 50%;
+    background-repeat: no-repeat;
+}
+
+.ACBottomPeg {
+    position: relative;
+    border-width: 0px;
+    border-style: none;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: auto;
+    margin-bottom: auto;
+    background-image: url(../../Images/topPegBG.png);
+    background-position: 50% 50%;
+    background-repeat: no-repeat;
+}
+
+
+.ACBottomRightPeg {
+    position: relative;
+    border-width: 0px;
+    border-style: none;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: auto;
+    margin-bottom: auto;
+    background-image: url(../../Images/topPegBG.png);
+    background-position: 50% 50%;
+    background-repeat: no-repeat;
+}
+
+.bottomPeg {
+    position: relative;
+    border-width: 0px;
+    border-style: none;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: auto;
+    margin-bottom: auto;
+    background-image: url(../../Images/topPegBG.png);
+    background-position: 50% 50%;
+    background-repeat: no-repeat;
+}
+
+.aMarble {
+    height: 100px;
+    width: 100px;
+    position: absolute;
+    top : 0px;
+    left: 0px;
+    display:block;
+    border-width: 0px;
+    border-style: none;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: auto;
+    margin-bottom: auto;
+    background-image: url(../../Images/marbleGold.png);
+    background-position: 50% 50%;
+    background-repeat: no-repeat;
+    opacity: 1;
+}
+
+.theMovingMarble {
+    z-index: 1;
+    height: 100px;
+    width: 100px;
+    position: absolute;
+    top : 0px;
+    left: 0px;
+    display:block;
+    border-width: 0px;
+    border-style: none;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: auto;
+    margin-bottom: auto;
+    background-image: url(../../Images/marbleGoldselected.png);
+    background-position: 50% 50%;
+    background-repeat: no-repeat;
+    opacity: 0.01;
+    -webkit-border-radius: 50px;
+    -webkit-transition-property: -webkit-transform;
+    -webkit-transition-duration: .001s;
+}
+
+.marbleWrapDiv{
+    position: relative;
+    height: 100px;
+    width: 100px;
+    -webkit-transition-property: -webkit-transform;
+    -webkit-transition-duration: .3s;
+}
+
+
+.optionsButtonWrapper{
+    position: relative;
+    height: 40px;
+    width: 40px;
+    border-style: none;
+    background-color: transparent;
+    border-width: 1px;
+    -webkit-border-radius: 5px;
+    margin-top: 3px;
+    margin-bottom: auto;
+    margin-left: 10px;
+    display: inline-block;
+}
+
+.squareButton
+{
+    position:absolute;
+}
+
+#backToBoardButtonWrapper
+{
+    position: relative;
+    height: 30px;
+    width: 200px;
+    border-style: inset;
+    border-color: rgba(230, 230, 230, .1);
+    border-width: 1px;
+    -webkit-border-radius: 5px;
+    background-position: 50% 50%;
+    background-repeat: no-repeat no-repeat;
+    margin-top: 7px;
+    margin-bottom: auto;
+    margin-right: 20px;
+    display:inline-block;
+    float: right;
+}
+
+.nonBoardScreen
+{
+    -webkit-border-radius: 40px;
+    border-radius: 40px;
+}
+
+.theBoardScreen
+{
+    -webkit-border-radius: 200px;
+}
+
+.theBoardOval
+{
+    -webkit-border-radius: 200px;
+}
+
+.groovesInWoodDiv
+{
+    -webkit-border-radius: 20px;
+    border-style: solid;
+    border-color: rgba(100, 100, 100, 0.292969);
+    border-width: 2px;
+    margin-left: 20px;
+    margin-right: 20px;
+    margin-top: 20px;
+    background-color: rgba(100, 100, 100, 0.496094);
+}
+
+
+.marbleColorButton{
+    display: inline-block;
+    float: left;
+    min-width: 30%;
+}
+
+
+.newGameButtonWrapper{
+    display:inline-block;
+    margin-right: auto;
+    margin-top: 60px;
+    margin-bottom: 10px;
+    width: 250px;
+    height: 60px;
+    margin-left: 50px;
+    position: absolute;
+}
+
+#newGameTabs {
+    -webkit-border-radius: 10px;
+    border-radius: 10px;
+}
+
+.tabButtonsClass{
+    -webkit-border-radius: 10px;
+    border-radius: 10px;
+}
+
+#miniPreviewBoard{
+    -webkit-transform: translate(-125px, -80px) scale(.6);
+}
+
+#miniEndBoard{
+    -webkit-transform: translate(-200px, -120px) scale(.4);
+}
+
+.fullScreenAuxBoardButtons
+{
+    display:none;
+}
+
+.curved40px
+{
+    -webkit-border-radius: 40px;
+}
+
+
+
+
+
+.colorWrapDiv {
+    height: 54px;
+    width: 54px;
+    position: absolute;
+    top : 0px;
+    left: 0px;
+    display:block;
+    border-width: 3px;
+    border-style: solid;
+    border-color: transparent;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: auto;
+    margin-bottom: auto;
+    background-position: 50% 50%;
+    background-repeat: no-repeat;
+    opacity: 1;
+    position: relative;
+}
+
+
+
+#marbleColorBlue
+{
+    background-image: url(../../Images/marblePreviewBlue.png);
+
+}
+
+
+#marbleColorRed
+{
+    background-image: url(../../Images/marblePreviewRed.png);
+
+}
+
+#marbleColorPurple
+{
+    background-image: url(../../Images/marblePreviewPurple.png);
+
+}
+
+#marbleColorGreen
+{
+    background-image: url(../../Images/marblePreviewGreen.png);
+
+}
+
+#marbleColorGold
+{
+    background-image: url(../../Images/marblePreviewGold.png);
+
+}
+
+#marbleColorSilver
+{
+    background-image: url(../../Images/marblePreviewSilver.png);
+
+}
+
+#marbleColorSepia
+{
+    background-image: url(../../Images/marblePreviewSepia.png);
+
+}
+
+#marbleColorD1
+{
+    background-image: url(../../Images/marblePreviewD1.png);
+
+}
+
+#marbleColorD2
+{
+    background-image: url(../../Images/marblePreviewD2.png);
+
+}
+
+#marbleColorD3
+{
+    background-image: url(../../Images/marblePreviewD3.png);
+
+}
+
+#marbleColorD4
+{
+    background-image: url(../../Images/marblePreviewD4.png);
+
+}
+
+#marbleColorD5
+{
+    background-image: url(../../Images/marblePreviewD5.png);
+
+}
+
+#marbleColorD6
+{
+    background-image: url(../../Images/marblePreviewD6.png);
+
+}
+
+#marbleColorD7
+{
+    background-image: url(../../Images/marblePreviewD7.png);
+
+}
+
+
+.currentMarbleClass
+{
+    background-color: rgba(220, 220, 220, .05);
+    border-radius: 15px;
+    -webkit-border-radius: 15px;
+    border-style: solid;
+    border-width: 3px;
+    border-color: rgba(255, 179, 16, .8);
+}
+
+.headerButton{
+    -webkit-user-select: none;
+    border-width: 3px;
+    border-style: solid;
+    -webkit-border-radius: 10px;
+    border-radius: 10px;
+    border-color: transparent;
+
+}
+
+.headerButtonActive
+{
+    background-color: rgba(255, 179, 16, .8);
+}
+
+
+
+.tabButtonActive
+{
+    background-color: rgba(255, 179, 16, .8);
+}
+
+
+.bgWrapDiv {
+    height: 68px;
+    width: 54px;
+    position: absolute;
+    top : 0px;
+    left: 0px;
+    display:block;
+    border-width: 3px;
+    border-style: solid;
+    border-color: transparent;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: auto;
+    margin-bottom: auto;
+    background-position: 50% 50%;
+    background-repeat: no-repeat;
+    opacity: 1;
+    position: relative;
+}
+
+.currentBGClass
+{
+    background-color: rgba(220, 220, 220, .05);
+    border-radius: 5px;
+    -webkit-border-radius: 5px;
+    border-style: solid;
+    border-width: 3px;
+    border-color: rgba(255, 179, 16, .8);
+}
+
+
+#background1
+{
+    background-image: url(../../Images/bg/thumbs/1.jpg);
+
+}
+
+
+#background2
+{
+    background-image: url(../../Images/bg/thumbs/2.jpg);
+
+}
+
+
+#background3
+{
+    background-image: url(../../Images/bg/thumbs/3.jpg);
+
+}
+
+#background4
+{
+    background-image: url(../../Images/bg/thumbs/4.jpg);
+
+}
+
+#background5
+{
+    background-image: url(../../Images/bg/thumbs/5.jpg);
+
+}
+
+#background6
+{
+    background-image: url(../../Images/bg/thumbs/6.jpg);
+
+}
+
+#background7
+{
+    background-image: url(../../Images/bg/thumbs/7.jpg);
+
+}
+
+#background8
+{
+    background-image: url(../../Images/bg/thumbs/8.jpg);
+
+}
+
+#background9
+{
+    background-image: url(../../Images/bg/thumbs/9.jpg);
+
+}
+
+#background10
+{
+    background-image: url(../../Images/bg/thumbs/10.jpg);
+
+}
+
+#background11
+{
+    background-image: url(../../Images/bg/thumbs/11.jpg);
+
+}
+
+#background12
+{
+    background-image: url(../../Images/bg/thumbs/12.jpg);
+
+}
+
+#background13
+{
+    background-image: url(../../Images/bg/thumbs/13.jpg);
+
+}
+
+#background14
+{
+    background-image: url(../../Images/bg/thumbs/14.jpg);
+
+}
+
+#background15
+{
+    background-image: url(../../Images/bg/thumbs/15.jpg);
+
+}
+
+#background16
+{
+    background-image: url(../../Images/bg/thumbs/16.jpg);
+
+}
+
+#background17
+{
+    background-image: url(../../Images/bg/thumbs/17.jpg);
+
+}
+
+#background18
+{
+    background-image: url(../../Images/bg/thumbs/18.jpg);
+
+}
+
+#background19
+{
+    background-image: url(../../Images/bg/thumbs/19.jpg);
+
+}
+
+#background20
+{
+    background-image: url(../../Images/bg/thumbs/20.jpg);
+
+}
+
+#background21
+{
+    background-image: url(../../Images/bg/thumbs/21.jpg);
+
+}
+
+
+.validPegClass
+{
+    background-image: url(../../Images/validPegBG.png);
+}
+
+.nextMovePegClass
+{
+    background-image: url(../../Images/nextMovePeg.png);
+}
+
+
+#commentTextArea {
+    border-radius: 10px;
+    -webkit-border-radius: 10px;
+}
+
+
+.saved_board_wrapper_list{
+    height: 65px;
+    width: 162px;
+    text-overflow: ellipsis;
+    margin-top: 0px;
+    border-top-width: 0px;
+    border-bottom-width: 1px;
+    border-left-width: 0px;
+    border-right-width: 0px;
+    border-radius: 1px;
+    border-color: rgba(220, 220, 220, .1);
+    padding-left: 16px;
+    padding-right: 24px;
+    padding-top: 16px;
+    padding-bottom: 6px;
+    background-position: right center;
+    background-repeat: no-repeat;
+    display: block;  
+    -webkit-transition-property: all;
+    -webkit-transition-duration: 50ms;
+    font-weight: regular;
+    border-style: solid;
+    -webkit-transition-property: all;
+    -webkit-transition-duration: 50ms;
+    background-color: rgba(5, 5, 5,.1);
+    color: rgba(250, 250, 250, 1);
+    text-shadow: rgb(0, 0, 0) 0px 1px 0px;
+    position: relative;
+    display: block;
+}
+
+.saved_board_wrapper_list_selected
+{
+    background-color: rgba(255, 179, 16, .4);
+    background-image: url(../../Images/listArrow.png);
+}
+
+.saved_board_wrapper_list_EH{
+    height: 75px;
+    width: 420px;
+    top: 0px;
+    left: 0px;
+    position: absolute;
+    margin-top: 2px;
+    background-position: right center;
+    background-repeat: no-repeat;
+    display: block;  
+    -webkit-transition-property: all;
+    -webkit-transition-duration: 50ms;
+    font-weight: regular;
+    border-style: none;
+    background-color: transparent;
+    color: rgba(250, 250, 250, 1);
+    text-shadow: rgb(0, 0, 0) 0px 1px 0px;
+}
+
+#createNewBoardGameWrapper{
+    -webkit-border-radius: 15px;
+    border-radius: 15px;
+}
