@@ -226,7 +226,6 @@
 	opacity: 0.01;
     -webkit-border-radius: 0px;
 	overflow: visible;
-	-webkit-transform: perspective(500px);
 }
 
 .marbleWrapDiv{
@@ -506,10 +505,11 @@
     margin-left: auto;
     left: 20px;
     height: 45px;
-    line-height: 45px;
-    font-size: 24px;
-    width: 100px;
-    top: -5px;
+    line-height: 38px;
+    font-size: 32px;
+    width: 120px;
+    top: 0px;
+    margin-top: 10px;
 	background-image: url("../../../Images/buttonbgLB.png");
 	background-position: 50%;
     color: rgba(0,98,158,1); /* dark blue */
@@ -899,18 +899,15 @@
 	border-radius: 15px;
     height: 85px;
     width: 85px;
-    text-overflow: ellipsis;
     border-width: 5px;
     border-color: transparent;
     padding-left: 6px;
     padding-right: 4px;
     padding-top: 6px;
     padding-bottom: 6px;
-    display: block;  
     font-weight: regular;
     border-style: solid;
     color: rgba(240,76,62,1);  /* red */
-    display: block;
     text-shadow: rgba(0,98,158,.4) 1px 3px 2px; /* dark blue */
 }
 
@@ -970,7 +967,7 @@
 	margin-top: 0px;    
 	margin-bottom: 10px;    
     font-family: Helvetica;
-	font-size: 46px;
+	font-size: 55px;
 	text-align: center;
 	text-transform: lowercase;
 	background-repeat: no-repeat no-repeat;
@@ -1011,7 +1008,7 @@
 	line-height: 55px;
 	text-align: center;
     width: 60px;
-    margin-top: 0px;
+    margin-top: 10px;
     margin-bottom: 6px;
     margin-right: 10px;
     border-width: 3px;
@@ -1021,7 +1018,7 @@
     -webkit-transition-duration: 150ms;
     background-color: transparent;
     border-radius: 10px;
-    font-size: 28px;
+    font-size: 50px;
 	font-weight: bold;
     background-repeat: no-repeat;
     background-image: url("../../../Images/buttonbgLB.png");
@@ -1146,7 +1143,7 @@
 
 .onbutton 
 {
-	font-size: 32px;
+	font-size: 40px;
 	border-width: 3px;
 	border-radius: 15px;
 	border-color: rgba(0,98,158,.5); /* dark blue */
@@ -1176,7 +1173,7 @@
 
 .offbutton 
 {
-	font-size: 32px;
+	font-size: 40px;
 	border-width: 3px;
 	border-radius: 15px;
 	border-color: rgba(0,98,158,.5); /* dark blue */
@@ -1234,6 +1231,6 @@
 .anButton
 {
 	max-height: 45px;
-	line-height: 45px;
-	font-size: 24px;
+	line-height: 37px;
+	font-size: 28px;
 }

@@ -1,9 +1,28 @@
 window.onresize = function() {
-	setZoom();	
+	if(chromeOS){
+		setZoomWeb();	
+	}
+	
 	return;
 }
 
-function setZoom()
+function setZoomiOS()
+{	
+	if(iPad){
+		zoomPercent = 100;
+	}
+	else{
+		zoomPercent = 45;
+		document.getElementsByTagName('html')[0].style.zoom = zoomPercent.toString() + "%";
+		document.getElementById('appWrapper').style.left = "-35px";
+		//document.getElementById('appWrapper').style.top = "40px";
+		contentPos = getOffset(getElementObject('content'));
+	}
+
+	return;
+}
+
+function setZoomWeb()
 {
 	screenHeight = window.innerHeight;
 	screenWidth = window.innerWidth;
@@ -11,12 +30,12 @@ function setZoom()
 	var realWidth;
 	
 	if (screenHeight < 1.34 * screenWidth){
-		realHeight = screenHeight-10;
+		realHeight = screenHeight-0;
 		realWidth = .75 * realHeight;
 	}
 	else{
-		realWidth = screenWidth-10;
-		realHeight = 1.33333 * realWidth;
+		realWidth = screenWidth-0;
+		realHeight = 1.333333 * realWidth;
 	}
 
 	var zoom = realHeight/1024;
@@ -29,6 +48,24 @@ function setZoom()
 	return;
 }
 
+
+function setZoom()
+{
+	/*alert(OSX);
+	alert(touchSupport);
+	alert(chromeOS);
+	alert(iOS);
+	alert(iPad);
+	alert(android);*/
+	
+	if(iOS){	
+		setZoomiOS();
+		return;
+	}
+	
+	setZoomWeb();
+
+}
 
 
 function hasClass(ele, name) 

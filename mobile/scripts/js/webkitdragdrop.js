@@ -104,6 +104,8 @@ var webkit_tools =
 	      element = element.offsetParent;
 	    } while (element);
 	
+		valueL = parseInt(valueL * 100/zoomPercent);
+		valueT = parseInt(valueT * 100/zoomPercent);
 	    return {left : valueL, top : valueT};
   	},
   	
@@ -113,7 +115,8 @@ var webkit_tools =
 	{
 	    var display = element.style.display;
 	    if (display != 'none' && display != null) // Safari bug
-	      return {width: element.offsetWidth, height: element.offsetHeight};
+//	      return {width: element.offsetWidth, height: element.offsetHeight};
+	      return {width: parseInt(element.offsetWidth * 100/zoomPercent), height: parseInt(element.offsetHeight*100/zoomPercent)};
 	
 	    var els = element.style;
 	    var originalVisibility = els.visibility;
@@ -128,7 +131,8 @@ var webkit_tools =
 	    els.display = originalDisplay;
 	    els.position = originalPosition;
 	    els.visibility = originalVisibility;
-	    return {width: originalWidth, height: originalHeight};
+//	    return {width: originalWidth, height: originalHeight};
+	    return {width: parseInt(originalWidth*100/zoomPercent), height: parseInt(originalHeight*100/zoomPercent)};
 	},
 	
 	//hasClassName - courtesy of Prototype (http://www.prototypejs.org)
@@ -494,8 +498,8 @@ var webkit_draggable = function(r, ip)
             delY = delY/fullScreenScaleRatio;
         }
         
-        delX = delX* 100 / zoomPercent;
-        delY = delY* 100 / zoomPercent;
+        delX = parseInt(delX* 100 / zoomPercent);
+        delY = parseInt(delY* 100 / zoomPercent);
 
 		rs.left = p.rx + delX + 'px';
 		rs.top  = p.ry + delY + 'px';
@@ -516,6 +520,8 @@ var webkit_draggable = function(r, ip)
 		//save position for touchEnd
 		this.lastCurX = curX;
 		this.lastCurY = curY;
+		
+		marbleMoved(curY, curX);
 	}
 	
 	this.touchEnd = function(event)

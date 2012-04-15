@@ -18,6 +18,7 @@ var OSX = false;
 var touchSupport;
 var chromeOS;
 var iOS;
+var iPad;
 var android;
 
 
@@ -36,6 +37,10 @@ function load()
 		chromeOS = false;
 		iOS = true;
 		android = false;
+		iPad = false;
+		if (agent.indexOf('ipad') != -1){
+			iPad = true;
+		}
 	}
 
 	else if( agent.indexOf('android') != -1) {
@@ -43,6 +48,7 @@ function load()
 		chromeOS = false;
 		iOS = false;
 		android = true;
+		iPad = false;
 	}
 
 	else{
@@ -50,12 +56,12 @@ function load()
 		chromeOS = true;
 		iOS = false;
 		android = false;
+		iPad = false;
 	}
 	goDown('about'); 
     goDown('endGame'); 
     goDown('solnScreen'); 
     goDown('endGame'); 
-    //goDown('endGameOptionsScreen1'); 
     goDown('puzzleResults'); 
 	goDown("solnScreen");
 	
@@ -254,7 +260,7 @@ function addButtonEventListeners()
 		var theBoardSlots_A = ['13', '14', '15', '23', '24', '25', '31', '32', '33', '34', '35', '36', '37', '41', '42', '43', '44', '45', '46', '47', '51', '52', '53', '54', '55', '56', '57', '63', '64', '65', '73', '74', '75'];
 	
 		for(i = 0; i < 33; i++){
-			addButtonElement("Aux_marble" + theBoardSlots_A[i], auxMarbleWasClicked);
+			addTapElement("Aux_movingMarble" + theBoardSlots_A[i], auxMarbleWasClicked);
         }
 
 		addButtonElement("goToBoard", playButtonWasClicked);
@@ -334,55 +340,7 @@ function addButtonEventListeners()
 		addButtonElement("continuePurchase", continuePurchase);
 
 		addButtonElement("goToUpgrade", tryPaidVersion);
-	 		
-	/*
-	 	document.getElementById("settingsButton").addEventListener('click', goToSettingsScreen, false);
-	    document.getElementById("aboutButton").addEventListener('click', goToAboutScreen, false);
-	    document.getElementById("dismissAboutButton").addEventListener('click', hideAboutScreen, false);
-	    document.getElementById("dismissEndGameOptionsScreen").addEventListener('click', hideEndGameScreen, false);
-	    document.getElementById("settingsToggleButtonOff1").addEventListener('click', hideSettingsScreen, false);
-	    document.getElementById("startANewFullBoardButton").addEventListener('click', startNewFullBoardGame, false);
-	    document.getElementById("newGameButton").addEventListener('click', newGameButtonWasClicked, false);
-	    document.getElementById("loadGameButton").addEventListener('click', loadGameButtonWasClicked, false);
-	    document.getElementById("dismissLoadGameScreen").addEventListener('click', hideLoadGameScreen, false);
-	    document.getElementById("dismissfullGameScreen").addEventListener('click', hideFullBoardOptionsScreen, false);
-	    document.getElementById("saveGameButton").addEventListener('click', goToSaveBoardOptionsScreen, false);
-	    document.getElementById("dismissSaveGameScreen").addEventListener('click', hideSaveBoardOptionsScreen, false);
-	    document.getElementById("saveAndStartANewFullBoardButton").addEventListener('click', saveAndStartFullBoard, false);
-	    document.getElementById("playPreviewBoard").addEventListener('click', playPreviewBoard, false);
-	    document.getElementById("useAsTemplete").addEventListener('click', useAsTemplete, false);
-	    document.getElementById("fullBoard").addEventListener('click', setupFullBoardPreviewGame, false);
-	    document.getElementById("emptyBoard").addEventListener('click', setupEmptyBoardPreviewGame, false);
-	    document.getElementById("puzzleGamesTabButton").addEventListener('click', puzzleTabButtonWasClicked, false);
-
-	    document.getElementById("decreaseOpacity").addEventListener('click', decreaseOpacity, false);
-	    document.getElementById("increaseOpacity").addEventListener('click', increaseOpacity, false);
-
-
-	    document.getElementById("undoLastMoveButton").addEventListener('click', undoFinalMove , false);
-
-
-
-
-	    document.getElementById("howtoStartupToggle").addEventListener('click', toggleHowToStartUp , false);
-	    document.getElementById("startANewFullBoardButton1").addEventListener('click', startNewFullBoardGame_Alt , false);
-
-
-	    document.getElementById("howToPlayButton").addEventListener('click', goToHowToScreen, false);
-	    document.getElementById("dismissHowToScreen").addEventListener('click', hideHowToScreen, false);
-	    document.getElementById("backtoPuzzles").addEventListener('click', backtoAllPuzzles, false);
-
-	    document.getElementById("backtoLite").addEventListener('click', backtoLite, false);
-	    document.getElementById("puzzleHintOffButton").addEventListener('click', showPuzzleEndBoard, false);
-	    document.getElementById("puzzleHintOnButton").addEventListener('click', resumePuzzle, false);
-
-	    document.getElementById("playPuzzleAgain").addEventListener('click', solveAgain, false);
-	    document.getElementById("allPuzzles").addEventListener('click', showAllPuzzles, false);
-
-		document.getElementById("goToBoard").addEventListener('click', playButtonWasClicked, false);
-		
-	*/
-
+	 	
     for (i=0; i<marbleHandles.length; i++){
     
 		addTapElement("marbleColor" + marbleHandles[i], aPreviewMarbleWasClicked);

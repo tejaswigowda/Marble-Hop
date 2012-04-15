@@ -5,6 +5,13 @@ var buttonElementsStatus = new Array();
 var buttonElementsTarget = new Array();
 
 
+var posTouchStart;
+var posTouchEnd;
+
+function getiScrollState(){
+	return getElementStyleObject('boardLibraryBody').webkitTransform;
+}
+
 function initializeButtonClicks()
 {
 	document.getElementById("appWrapper").addEventListener('touchstart', appWrapperTouchStart, false);
@@ -31,8 +38,6 @@ function addButtonElement(divID, targetFunction)
 		document.getElementById(divID + "__eventListener").addEventListener('click', targetFunction, false);
 	}
 	
-	//else{	}
-	
 }
 
 
@@ -41,9 +46,10 @@ function addTapElement(divID, targetFunction)
 	if(chromeOS){
 		document.getElementById(divID).addEventListener('click', targetFunction, false);
 	}
-	else{
+	if(touchSupport){
 		document.getElementById(divID).addEventListener('touchstart', targetFunction, false);
 	}
+
 
 	getElementStyleObject(divID).cursor = "pointer";
 	
@@ -56,6 +62,8 @@ function appWrapperTouchStart(event)
 {
 	var divID = event.target.id;
 	var divPos = buttonElements.contains(divID);
+	
+	posTouchStart = getiScrollState(); 
 	
 	//alert(divPos)
 	if (divPos < 0){
@@ -81,10 +89,14 @@ function appWrapperTouchEnd(event)
 	var divID = event.target.id;
 	var divPos = buttonElements.contains(divID);
 	
+	posTouchEnd = getiScrollState(); 
+	
 	
 	if (divPos >= 0){
 		if (buttonElementsStatus[divPos] === "touched"){			
-			buttonElementsTarget[divPos]();
+			if (posTouchEnd == posTouchStart){		
+				buttonElementsTarget[divPos]();
+			}
 		}
 	}
 	

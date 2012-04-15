@@ -526,11 +526,14 @@ function animateOpacityBar()
 	return;
 }
 
-function auxMarbleWasClicked(e)
+function auxMarbleWasClicked()
 {
 	playSound('tink');
-    var coodsInt = parseInt(e.target.id.substring(10));
-	var coods = coodsInt.toString();
+	var coods = event.target.id.substring(16);
+
+    var coodsInt = parseInt(coods);
+	
+	//alert(coods);
 
 	if (isAMemberof(coods, currentPreviewGame)){
         if (currentPreviewGame.length > 1){
@@ -952,8 +955,8 @@ function putTheMarbleBackCOS(coods)
     return;
 }
 
-
-function putTheMarbleBack(coods)
+/*
+function putTheMarbleBack_OLD(coods)
 {
     
     var animationDuration = 250;
@@ -972,20 +975,67 @@ function putTheMarbleBack(coods)
 	
     return;
 }
+*/
 
-function marbleWasReleased(e)
-{
+function marbleWasReleased()
+{	
+	var targetID = event.target.id;
+	var coods = targetID.substring(12);
+
+	
+	
     $(".boardTableTD").removeClass("validPegClass");
-    var coods = e.target.id.substring(12);
+    //var coods = pegpos;
     if (isNOTaMemberof(coods, currentGame)){
-        setTimeout("playSound('fallback')", 250);
+        setTimeout('playSound("fallback")', 250);
     }
-    putTheMarbleBack(coods);
+
+	getElementStyleObject(currentlyDraggedMarble).webkitAnimation = "none";
+
+	var dropPegID = getDropPegID();
+	//alert(dropPegID);	
+	
+	if(theBoardSlots.contains(dropPegID) >= 0){
+		marbleWasDropped(coods, dropPegID);
+	}
+	
+	putTheMarbleBackCOS(coods);
+    
+
     return;
 }
 
 
+function getDropPegID()
+{
+	var topTh = [120, 150, 260, 360, 460, 560, 660, 760, 860];
+	var leftTh = [-20 ,67, 167, 267, 367, 467, 567, 667, 767];
+	
+	var t = touchPos.top * 100/zoomPercent - 50;
+	var l = touchPos.left * 100/zoomPercent -50;
+	
+	var i;
+	var outS = "";
 
+	for (i=0; i<topTh.length; i++){
+		if(t >= topTh[i] && t < topTh[i+1]){
+			outS =  i.toString();
+			break;
+		}
+	}
+		
+	for (i=0; i<leftTh.length; i++){
+		if(l >= leftTh[i] && l < leftTh[i+1]){
+			outS = outS + (i+1).toString();
+			break;
+		}
+	}
+	
+	//alert(t + " : " + l + "\n" + outS);
+	
+	return outS;
+	
+}
 
 
 function putTheMarbleBack_aux(coods)
@@ -1222,55 +1272,6 @@ function isGameOver()
 }
 
 
-function marbleWasDropped(e, destPeg)
-{
-    var sourcePeg = e.target.id;
-	
-    var sourceCoods = sourcePeg.substring(12);
-    var destCoods = destPeg.substring(3);
-    sourceX = parseInt(sourceCoods[0]);
-    sourceY = parseInt(sourceCoods[1]);
-    destX = parseInt(destCoods[0]);
-    destY = parseInt(destCoods[1]);
-    if (isMoveValid(sourceX, sourceY, destX, destY)){
-        
-        $("#" + destPeg).removeClass("validPegClass");
-        playSound('drop');
-		
-		
-        addMarbleToBoard(destCoods);
-        removeMarbleFromBoard(sourceCoods);
-        var midMarbleCoods = getAvgOfCoods(sourceX, sourceY, destX, destY);
-        setTimeout('setInterimOpacity("'+ midMarbleCoods +'")', 250);
-
-        setTimeout('animateAwayMarble("'+ midMarbleCoods +'")', 400);
-        
-        currentGame[currentGame.length] = midMarbleCoods;
-        updateValidMovesDict();
-        updateHints();
-        
-
-        setTimeout('removeMarbleFromBoard_x("'+ midMarbleCoods +'"); ', 700);
-        setTimeout('document.getElementById("marble'+ destCoods +'").style.opacity = "1"; ', 300);
-		
-
-        if (isGameOver()){
-            setTimeout("goToEndGameScreen();", 200);
-        }
-
-        Stack.push(makeArrayCopy(currentGame));
-		
-    }
-    else{
-        document.getElementById("movingMarble" + sourceCoods).style.opacity = '.01';
-        document.getElementById("marble" + sourceCoods).style.opacity = '1';
-    }
-    
-    putTheMarbleBack(sourceCoods);
-	
-    return;
-}
-
 
 
 
@@ -1489,75 +1490,23 @@ function setAnimation(flag){
 
 function initializeWebkitDragDrop(){
     for(var i = 0; i < 33; i++){
-        new webkit_draggable("movingMarble" + theBoardSlots[i], {revert : false, onStart : function() {marbleWasTouched(event);}, onEnd : function() {marbleWasReleased(event);} });
-       //new webkit_draggable("movingMarble" + theBoardSlots[i]);
+        new webkit_draggable("movingMarble" + theBoardSlots[i], {revert : false, drag : function(){alert("here")} ,onStart : function() {marbleWasTouched(event);}, onEnd : function() {marbleWasReleased(event);} });
     
-        addTapElement("Aux_movingMarble" + theBoardSlots[i], auxMarbleWasClicked);
+        //addTapElement("Aux_movingMarble" + theBoardSlots[i], auxMarbleWasClicked);
     }
 
-    webkit_drop.add('peg13', {onDrop : function(){ marbleWasDropped(event, 'peg13')}});
-    webkit_drop.add('peg14', {onDrop : function(){ marbleWasDropped(event, 'peg14')}});
-    webkit_drop.add('peg15', {onDrop : function(){ marbleWasDropped(event, 'peg15')}});
-    
-    webkit_drop.add('peg23', {onDrop : function(){ marbleWasDropped(event, 'peg23')}});
-    webkit_drop.add('peg24', {onDrop : function(){ marbleWasDropped(event, 'peg24')}});
-    webkit_drop.add('peg25', {onDrop : function(){ marbleWasDropped(event, 'peg25')}});
-
-    webkit_drop.add('peg31', {onDrop : function(){ marbleWasDropped(event, 'peg31')}});
-    webkit_drop.add('peg32', {onDrop : function(){ marbleWasDropped(event, 'peg32')}});
-    webkit_drop.add('peg33', {onDrop : function(){ marbleWasDropped(event, 'peg33')}});
-    webkit_drop.add('peg33', {onDrop : function(){ marbleWasDropped(event, 'peg33')}});
-    webkit_drop.add('peg34', {onDrop : function(){ marbleWasDropped(event, 'peg34')}});
-    webkit_drop.add('peg35', {onDrop : function(){ marbleWasDropped(event, 'peg35')}});
-    webkit_drop.add('peg34', {onDrop : function(){ marbleWasDropped(event, 'peg34')}});
-    webkit_drop.add('peg36', {onDrop : function(){ marbleWasDropped(event, 'peg36')}});
-    webkit_drop.add('peg37', {onDrop : function(){ marbleWasDropped(event, 'peg37')}});    
-
-    webkit_drop.add('peg41', {onDrop : function(){ marbleWasDropped(event, 'peg41')}});
-    webkit_drop.add('peg42', {onDrop : function(){ marbleWasDropped(event, 'peg42')}});
-    webkit_drop.add('peg43', {onDrop : function(){ marbleWasDropped(event, 'peg43')}});
-    webkit_drop.add('peg44', {onDrop : function(){ marbleWasDropped(event, 'peg44')}});
-    webkit_drop.add('peg43', {onDrop : function(){ marbleWasDropped(event, 'peg43')}});
-    webkit_drop.add('peg44', {onDrop : function(){ marbleWasDropped(event, 'peg44')}});
-    webkit_drop.add('peg45', {onDrop : function(){ marbleWasDropped(event, 'peg45')}});
-    webkit_drop.add('peg46', {onDrop : function(){ marbleWasDropped(event, 'peg46')}});
-    webkit_drop.add('peg47', {onDrop : function(){ marbleWasDropped(event, 'peg47')}});
-
-    webkit_drop.add('peg51', {onDrop : function(){ marbleWasDropped(event, 'peg51')}});
-    webkit_drop.add('peg52', {onDrop : function(){ marbleWasDropped(event, 'peg52')}});
-    webkit_drop.add('peg53', {onDrop : function(){ marbleWasDropped(event, 'peg53')}});
-    webkit_drop.add('peg54', {onDrop : function(){ marbleWasDropped(event, 'peg54')}});
-    webkit_drop.add('peg53', {onDrop : function(){ marbleWasDropped(event, 'peg53')}});
-    webkit_drop.add('peg54', {onDrop : function(){ marbleWasDropped(event, 'peg54')}});
-    webkit_drop.add('peg55', {onDrop : function(){ marbleWasDropped(event, 'peg55')}});
-    webkit_drop.add('peg56', {onDrop : function(){ marbleWasDropped(event, 'peg56')}});
-    webkit_drop.add('peg57', {onDrop : function(){ marbleWasDropped(event, 'peg57')}});
-
-    webkit_drop.add('peg63', {onDrop : function(){ marbleWasDropped(event, 'peg63')}});
-    webkit_drop.add('peg64', {onDrop : function(){ marbleWasDropped(event, 'peg64')}});
-    webkit_drop.add('peg65', {onDrop : function(){ marbleWasDropped(event, 'peg65')}});
-
-    webkit_drop.add('peg73', {onDrop : function(){ marbleWasDropped(event, 'peg73')}});
-    webkit_drop.add('peg74', {onDrop : function(){ marbleWasDropped(event, 'peg74')}});
-    webkit_drop.add('peg75', {onDrop : function(){ marbleWasDropped(event, 'peg75')}});
-		
+	
 	return;
 }
 
 function startUp()
 {   
-    setTimeout('document.getElementById("startUpScreen").style.display = "none";', 1800);
-    setTimeout('document.getElementById("startUpScreen").style.opacity = "0";', 1200);
-
 	if (!lite){
 		getElementStyleObject("goToUpgrade").display = "none";
 	}
 	
-	/*
-	if(touchSupport){  
-    	boardListiScroll = new iScroll(document.getElementById('boardLibraryBody')); 
-    	//puzzleListiScroll = new iScroll(document.getElementById('puzzleLibraryBody')); 
-	}*/
+	
+   	boardListiScroll = new iScroll('boardLibraryBodyWrapper', {zoom:false}); 
 	
     changeBackground();
     changeMarbleColor();
@@ -1666,8 +1615,6 @@ function startUp()
 
 
         for(var i = 0; i < 33; i++){
-		//	addButtonElement("Aux_movingMarble" + theBoardSlots[i], auxMarbleWasClicked);
-
 				$("#peg" + theBoardSlots[i]).droppable({
 					drop: function(event) {marbleWasDroppedCOS(event)}
 				});
@@ -1795,10 +1742,12 @@ function startUp()
 	
 	menuButtonWasClicked();
 	
-	//document.getElementById("appWrapper").addEventListener('mouseup', setZoom, false);
 	setZoom();
     manageTrial();
 	
+	setTimeout('document.getElementById("startUpScreen").style.display = "none";', 1800);
+    setTimeout('document.getElementById("startUpScreen").style.opacity = "0";', 1200);
+    
 
 
 }
@@ -1883,6 +1832,56 @@ function putTheMarbleBack_auxCLICK(coods)
     document.getElementById("movingMarble" + coods).style.opacity = "0.01";
 }
 
+
+function marbleWasDropped(sourceCoods, destCoods)
+{
+	//alert(sourceCoods + " : " + destCoods);
+	
+    sourceX = parseInt(sourceCoods[0]);
+    sourceY = parseInt(sourceCoods[1]);
+    destX = parseInt(destCoods[0]);
+    destY = parseInt(destCoods[1]);
+    if (isMoveValid(sourceX, sourceY, destX, destY)){
+        
+        $("#peg" + destCoods).removeClass("validPegClass");
+        playSound('drop');
+		
+		
+        addMarbleToBoard(destCoods);
+        removeMarbleFromBoard(sourceCoods);
+        var midMarbleCoods = getAvgOfCoods(sourceX, sourceY, destX, destY);
+        setTimeout('setInterimOpacity("'+ midMarbleCoods +'")', 250);
+
+        setTimeout('animateAwayMarble("'+ midMarbleCoods +'")', 300);
+        
+        currentGame[currentGame.length] = midMarbleCoods;
+        updateValidMovesDict();
+        updateHints();
+        
+
+        setTimeout('removeMarbleFromBoard_x("'+ midMarbleCoods +'"); ', 700);
+        setTimeout('document.getElementById("marble'+ destCoods +'").style.opacity = "1"; ', 300);
+		
+
+        if (isGameOver()){
+            setTimeout("goToEndGameScreen();", 200);
+        }
+
+        Stack.push(makeArrayCopy(currentGame));
+		
+    }
+    else{
+        document.getElementById("movingMarble" + sourceCoods).style.opacity = '.01';
+        document.getElementById("marble" + sourceCoods).style.opacity = '1';
+    }
+    
+    putTheMarbleBackCOS(sourceCoods);
+
+	//setTimeout('getElementStyleObject("body").cursor = "-webkit-grab"; getElementStyleObject("appWrapper").cursor = "-webkit-grab";', 100);
+
+	
+    return;
+}
 
 
 function marbleWasDroppedCLICK(sourceCoods, destCoods)
@@ -2378,9 +2377,11 @@ function hideMessageTextDiv()
 }
 
 
-function boardWasSelectedInLibrary(event)
+function boardWasSelectedInLibrary()
 {	
     var targetDivID = event.target.id;
+
+	//alert(targetDivID)
 	
 	var boardNoInt = parseInt(targetDivID.substring(28));
     var boardNo = boardNoInt.toString();
@@ -2437,6 +2438,9 @@ function deleteSavedBoard()
 	getElementStyleObject('deleteBoard').display = "none";
 
 	localStorage.setItem("SB_" + boardtoDel + "_NOTE", "**DEL**");
+
+	boardListiScroll.refresh();
+    boardListiScroll.scrollTo(0,0,0);
 
 	return;
 }
@@ -2527,9 +2531,9 @@ function populatePuzzleBoardList()
         addPuzzleBoardListItem(i);
     }
 
-	if(touchSupport){  
+	//if(touchSupport){  
     	//puzzleListiScroll.refresh();
-	}
+	//}
 }
 
 function addPuzzleBoardListItem(i){
@@ -2734,26 +2738,28 @@ function emailInfo(event)
 {
 	playSound("tink");
 	
-    if (chromeOS){
+	if(touchSupport)
+	{
+		var mailjsurl = "http://apps.foxyninjastudios.com/mailjs/index.html";
+		var url = mailjsurl + "#" + emailSubject + ":::" + emailText;
+		window.open(url,'emailWindow');
+		return;
+	}
         var mailto_link = 'mailto:'+'?subject='+emailSubject+'&body='+emailText;
         var win = window.open(mailto_link,'emailWindow');
         if (win && win.open &&!win.closed) win.close();
         return;
-    }
     
-	new EmailComposer().showEmailComposer(emailSubject, emailText);
+	//new EmailComposer().showEmailComposer(emailSubject, emailText);
 }
 
 
 
 function buyAdFree()
 {
-    if (chromeOS){
-        window.open("http://foxyninjastudios.com/marblehop");
-        return;
-    }
+    window.open("http://foxyninjastudios.com/marblehop");
     
-    PhoneGap.exec("ChildBrowserCommand.showWebPage", "http://foxyninjastudios.com/marblehop/buy");
+    //PhoneGap.exec("ChildBrowserCommand.showWebPage", "http://foxyninjastudios.com/marblehop/buy");
     return;
 }
 
@@ -2762,12 +2768,9 @@ function fnsLink()
 {
 	playSound("tink");
 	
-    if (chromeOS){
-        window.open("http://foxyninjastudios.com");
-        return;
-    }
+    window.open("http://foxyninjastudios.com");
 
-    PhoneGap.exec("ChildBrowserCommand.showWebPage", "http://foxyninjastudios.com");
+    // PhoneGap.exec("ChildBrowserCommand.showWebPage", "http://foxyninjastudios.com");
     return;
 }
 
@@ -2778,12 +2781,11 @@ function shareOnFaceBook()
 	
     socialText = "http://foxyninjastudios.com/marblehop";
 
-    if (chromeOS){
-        window.open("http://www.facebook.com/sharer.php?u=" + socialText);
-        return;
-    }
+    window.open("http://www.facebook.com/sharer.php?u=" + socialText);
     
-    PhoneGap.exec("ChildBrowserCommand.showWebPage", "http://www.facebook.com/sharer.php?u=" + socialText);
+    //PhoneGap.exec("ChildBrowserCommand.showWebPage", "http://www.facebook.com/sharer.php?u=" + socialText);
+    return;
+
 }
 
 
@@ -2793,12 +2795,9 @@ function shareOnTwitter()
 	
     socialText = "http://foxyninjastudios.com/marblehop";
     
-    if (chromeOS){
-        window.open("http://twitter.com/home?status=" + socialText);
-        return;
-    }
+    window.open("http://twitter.com/home?status=" + socialText);
     
-    PhoneGap.exec("ChildBrowserCommand.showWebPage", "http://twitter.com/home?status=" + socialText);
+    //PhoneGap.exec("ChildBrowserCommand.showWebPage", "http://twitter.com/home?status=" + socialText);
 }
 
 
@@ -3443,7 +3442,7 @@ function menuButtonWasClicked()
 	setInfoText("");
 	getElementStyleObject('infoBox').display = "none";
 	
-	getElementStyleObject("headerDiv").webkitTransform = "translate3d(0,-70px,0)";
+	getElementStyleObject("headerDiv").webkitTransform = "translate3d(0,-150px,0)";
 	
 	getElementStyleObject("helpWrapper").display = "none";
 	
@@ -3510,7 +3509,9 @@ function doneWithHelp()
 function savedBoardButtonWasClicked()
 {
 	playSound("tink");
-    
+    boardListiScroll.refresh();
+    boardListiScroll.scrollTo(0,0,0);
+
 	backtoSavedBoards();
 	getElementStyleObject("mainMenuScreenWrapper").webkitTransform = "translate3d(0,1024px,0)";
 	getElementStyleObject("loadGameScreen").webkitTransform = "translate3d(0,1024px,0)";
@@ -3924,6 +3925,21 @@ function getOffset( el ) {
     return { top: _y, left: _x };
 }
 
+function getOffset_Aux( el ) {
+    var _x = 0;
+    var _y = 0;
+    while( el && !isNaN( el.offsetLeft ) && !isNaN( el.offsetTop ) ) {
+		if (el.id === "theBoard"){
+			break;
+		}
+        _x += el.offsetLeft;// - el.scrollLeft;
+        _y += el.offsetTop;// - el.scrollTop;
+        el = el.offsetParent;
+    }
+    return { top: _y, left: _x };
+}
+
+
 function continuePurchase()
 {
 	backtoLite();
@@ -3932,6 +3948,21 @@ function continuePurchase()
         window.open("https://chrome.google.com/webstore/detail/lagnbahfchokmglcdnnmbbkkdboaegla");
 		return;
     }
+}
+
+
+
+var touchPos = {
+	top: 0,
+	left: 0
+}
+
+function marbleMoved(t, l)
+{
+	touchPos.top = parseInt(t);
+	touchPos.left = parseInt(l);
+	
+	return;
 }
 
 function marbleIsDraggedCOS(e, coods)
