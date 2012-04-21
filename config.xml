@@ -1,24 +1,47 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <widget xmlns		= "http://www.w3.org/ns/widgets"
 	xmlns:gap	= "http://phonegap.com/ns/1.0"
-	id		= "com.phonegap.getting.started"
-	version 	= "1.0.0">
+	id		= "com.foxyNinjaStudios.marbleHop"
+	version 	= "3.0.0">
 
-	<name>PhoneGap: Getting Started</name>
+	<name>Marble Hop</name>
 
 	<description>
-		A template for getting started with PhoneGap development and build.phonegap.com
+		Marble Hop files for build.phonegap.com
 	</description>
 
-	<author href="http://alunny.github.com"
-		email="andrew.lunny@nitobi.com">
-		Andrew Lunny
+	<author href="http://github.com/tejaswigowda"
+		email="tejaswi@foxyninjastudios.com">
+		Tejaswi Gowda
 	</author>
 
-	<icon src="icon.png" gap:role="default" />
+	<icon src="icons/Icon.png" gap:role="default" />
+<!-- iOS requires specific dimensions for icons; classic iPhone screens, Retina
+    displays, and iPad screens respectively -->
+    <icon src="icons/Icon-72.png" width="72" height="72"/>
+    <icon src="icons/Icon-72@2x.png" width="144" height="144"/>
+    <icon src="icons/Icon-Small-50.png" width="50" height="50"/>
+    <icon src="icons/Icon-Small.png" width="29" height="29"/>
+    <icon src="icons/Icon-Small@2x.png" width="58" height="58"/>
+    <icon src="icons/Icon.png" width="57" height="57"/>
+    <icon src="icons/Icon@2x.png" width="114" height="114"/>
 
-	<feature name="http://api.phonegap.com/1.0/geolocation"/>
-	<feature name="http://api.phonegap.com/1.0/network"/>
+<!-- <feature name="http://api.phonegap.com/1.0/geolocation"/>
+	<feature name="http://api.phonegap.com/1.0/network"/> -->
 
 	<preference name="orientation" value="portrait" />
+	<preference name="fullscreen" value="false" />
+	<preference name="stay-in-webview" value="false" />
+	
+	
+	<gap:splash src="splash/Default.png"/>
+	<gap:splash src="splash/Default-Landscape.png" width="1024" height="768"/>
+	<gap:splash src="splash/Default-Portrait.png" width="768" height="1024"/>
+	<gap:splash src="splash/Default-PortraitUpsideDown.png" width="768" height="1024"/>
+	<gap:splash src="splash/Default@2x.png" width="640" height="960"/>
+	
+	<access origin="http://foxyninjastudios.com" browserOnly="true" subdomains="true" />
+	<access origin="http://facebook.com" browserOnly="true" subdomains="true" />
+	<access origin="http://twitter.com" browserOnly="true" subdomains="true" />
+	
 </widget>
